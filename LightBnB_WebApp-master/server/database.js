@@ -3,8 +3,8 @@ const users = require('./json/users.json');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-database: 'lightbnb'
-})
+  database: 'lightbnb'
+});
 
 /// Users
 
@@ -17,15 +17,15 @@ database: 'lightbnb'
 
 const getUserWithEmail = (email) => {
   return pool
-    .query (
+    .query(
       `SELECT * FROM users WHERE email = $1`, [email]
-      )
+    )
     .then(result => {
       if (result) {
         return result.rows[0];
       } else return null;
     })
-    .catch(err => console.log(err.message))
+    .catch(err => console.log(err.message));
 };
 
 
@@ -50,18 +50,18 @@ exports.getUserWithEmail = getUserWithEmail;
  * @return {Promise<{}>} A promise to the user.
  */
 
- const getUserWithId = function(id) {
+const getUserWithId = function(id) {
   return pool
-    .query (
+    .query(
       `SELECT * FROM users WHERE id = $1`, [id]
-      )
+    )
     .then(result => {
       if (result) {
         return result.rows[0];
       } else return null;
     })
-    .catch(err => console.log(err.message))
-}
+    .catch(err => console.log(err.message));
+};
 
 // const getUserWithId = function(id) {
 //   return Promise.resolve(users[id]);
@@ -83,14 +83,14 @@ exports.getUserWithId = getUserWithId;
 const addUser = (userObj) => {
   const {name, email, password} = userObj;
   return pool
-    .query (
+    .query(
       `INSERT INTO users (name, email, password)
       VALUES($1, $2, $3)
       RETURNING *;`, [name, email, password]
     )
-    .then (result => result)
-    .catch (err => console.log('error',err.message))
-}
+    .then(result => result)
+    .catch(err => console.log('error',err.message));
+};
 
 exports.addUser = addUser;
 
@@ -149,6 +149,6 @@ const addProperty = function(property) {
   property.id = propertyId;
   properties[propertyId] = property;
   return Promise.resolve(property);
-}
+};
 
 exports.addProperty = addProperty;
