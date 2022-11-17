@@ -28,20 +28,6 @@ const getUserWithEmail = (email) => {
     .catch(err => console.log(err.message));
 };
 
-
-
-// const getUserWithEmail = function(email) {
-//   let user;
-//   for (const userId in users) {
-//     user = users[userId];
-//     if (user.email.toLowerCase() === email.toLowerCase()) {
-//       break;
-//     } else {
-//       user = null;
-//     }
-//   }
-//   return Promise.resolve(user);
-// }
 exports.getUserWithEmail = getUserWithEmail;
 
 /**
@@ -74,11 +60,6 @@ exports.getUserWithId = getUserWithId;
  * @param {{name: string, password: string, email: string}} user
  * @return {Promise<{}>} A promise to the user.
  */
-
-// pool.query(`INSERT INTO users (name, email, password)
-// VALUES('kiko', 'k@gmail.com' , 'password')
-// RETURNING *`).then(response => {console.log(response)})
-
 
 const addUser = (userObj) => {
   const {name, email, password} = userObj;
@@ -186,6 +167,7 @@ exports.getAllProperties = getAllProperties;
  * @param {{}} property An object containing all of the property details.
  * @return {Promise<{}>} A promise to the property.
  */
+
 const addProperty = function(property) {
   console.log(property);
   const {owner_id, title, description, thumbnail_photo_url, cover_photo_url, cost_per_night, street, city, province, post_code, country, parking_spaces, number_of_bathrooms, number_of_bedrooms} = property;
